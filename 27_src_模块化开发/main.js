@@ -1,0 +1,19 @@
+// vue读取main.js 会先把所有import先找出来读取 所以把执行语句放在import中间也不会比后面的import先执行
+// 引入vue
+import Vue from 'vue'
+// 引入APP
+import App from './App.vue'
+// 引入store
+import store from './store'
+
+//  关闭Vue的生产提示
+Vue.config.productionTip = false
+
+// 创建vm
+new Vue({
+    el: '#app',
+    render: h => h(App),
+    store,
+})
+
+// console.log(vm)

@@ -1,0 +1,37 @@
+// 该文件专门用于创建整个应用的路由器
+import VueRouter from "vue-router";
+// 引用组件
+import MyAbout from '../pages/MyAbout'
+import MyHome from '../pages/MyHome'
+import Message from '../pages/Message'
+import News from '../pages/News'
+import Detail from '../pages/Detail'
+
+export default new VueRouter({
+    routes: [{
+            path: '/about',
+            component: MyAbout
+        },
+        {
+            path: '/home',
+            component: MyHome,
+            // 子路由组件path不用加斜杆，底层遍历的时候会自动加上
+            children: [{
+                    name: 'message',
+                    path: 'message',
+                    component: Message,
+                    children: [{
+                        name: 'detail',
+                        // path: 'detail',
+                        path: 'detail/:id/:title', // 后面两个是占位符，用于接收params参数
+                        component: Detail
+                    }]
+                },
+                {
+                    path: 'news',
+                    component: News
+                }
+            ]
+        },
+    ]
+})
